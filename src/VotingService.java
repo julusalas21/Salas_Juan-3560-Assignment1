@@ -23,7 +23,8 @@ public class VotingService {
         }
     }
 
-    public void setQuestionClass(Question question){
+    public void setQuestion(Question question){
+        this.question=question;
         questionInitialized=true;
     }
 
@@ -39,11 +40,34 @@ public class VotingService {
         return listOfStudentAnswers.size();
     }
 
-    private boolean isCorrect(Student student,Question question){
-        if(multipleChoice==true)
+    public void outputResults(){
+        for(int i=0;i<question.getNumOfAnswers();i++)
         {
-
+            String answerChoice=question.getAnswerChoice(i);
+            int numOfAnswers=0;
+            for(int j=0;j<getAmountOfStudents();j++)
+            {
+                if(listOfStudentAnswers.elementAt(j).getAnswer().equalsIgnoreCase(answerChoice)) {
+                    numOfAnswers++;
+                }
+            }
+            if(question.checkAnswer(answerChoice)) {
+                System.out.println(answerChoice + ": " + numOfAnswers+" Correct!");
+            }
+            else {
+                System.out.println(answerChoice + ": " + numOfAnswers);
+            }
         }
+    }
+
+
+    public boolean isCorrect(Student student){
+        boolean check=false;
+        if(question.checkAnswer(student.getAnswer()))
+        {
+            check=true;
+        }
+        return check;
     }
 
 }
