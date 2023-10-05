@@ -34,4 +34,8 @@ public abstract class Question {
     public String getQuestion() {
         return question;
     }
+
+    //this will check if a given answer is correct in the subclasses
+    public abstract boolean checkAnswer(String answer);
+
 }

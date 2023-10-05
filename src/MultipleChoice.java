@@ -20,7 +20,21 @@ public class MultipleChoice extends Question{
             return CorrectAnswers.size();
     }
 
+    //not too sure if i need to get rid of this class because of the check answer
     public String getCorrectAnswer(int index){
         return CorrectAnswers.elementAt(index);
+    }
+
+    @Override
+    public boolean checkAnswer(String answer){
+        boolean check=false;
+        for(int i=0;i<CorrectAnswers.size();i++){
+            if(answer.equalsIgnoreCase(CorrectAnswers.elementAt(i))){
+                check= true;
+                break;
+            }
+        }
+        return check;
+
     }
 }
